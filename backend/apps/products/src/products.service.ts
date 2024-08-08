@@ -31,4 +31,8 @@ export class ProductsService {
   async updateProduct(id: number, updateProductDto: UpdateProductDto) {
     return this.productsRepository.findOneAndUpdate({ id }, updateProductDto);
   }
+
+  async deleteProduct(id: number) {
+    return this.productsRepository.findOneAndDelete({ id });
+  }
 }
