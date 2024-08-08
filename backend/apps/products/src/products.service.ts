@@ -1,5 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProductDto, Product, ProductsRepository } from '@app/common';
+import {
+  CreateProductDto,
+  Product,
+  ProductsRepository,
+  UpdateProductDto,
+} from '@app/common';
 
 @Injectable()
 export class ProductsService {
@@ -21,5 +26,9 @@ export class ProductsService {
 
   async findOneProduct(id: number) {
     return this.productsRepository.findOne({ id });
+  }
+
+  async updateProduct(id: number, updateProductDto: UpdateProductDto) {
+    return this.productsRepository.findOneAndUpdate({ id }, updateProductDto);
   }
 }
