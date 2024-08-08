@@ -3,18 +3,18 @@ import { Column, Entity } from 'typeorm';
 
 @Entity()
 export class Product extends AbstractEntity<Product> {
-  @Column()
+  @Column('varchar')
   title: string;
 
-  @Column()
+  @Column('varchar')
   description: string;
 
-  @Column()
+  @Column('varchar')
   image: string;
 
-  @Column()
+  @Column('varchar')
   link: string;
 
-  @Column()
+  @Column('boolean')
   displayStatus: boolean;
 }
