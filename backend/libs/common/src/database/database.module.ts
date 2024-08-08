@@ -9,7 +9,7 @@ import { EntityClassOrSchema } from '@nestjs/typeorm/dist/interfaces/entity-clas
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'your_password',
+      password: 'randomrootpassword',
       database: 'eportfolio',
       autoLoadEntities: true,
       synchronize: true,

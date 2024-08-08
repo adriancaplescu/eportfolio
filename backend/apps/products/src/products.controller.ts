@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { ProductsService } from './products.service';
 
-@Controller()
+@Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
@@ -9,4 +9,9 @@ export class ProductsController {
   getHello(): string {
     return this.productsService.getHello();
   }
+
+  // @Post()
+  // async createProduct(@Body() createProductDto: CreateProductDto) {
+  //   return this.productsService.createProduct(createProductDto);
+  // }
 }
