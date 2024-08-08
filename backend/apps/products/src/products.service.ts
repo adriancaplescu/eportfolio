@@ -18,4 +18,8 @@ export class ProductsService {
   async findAllProducts() {
     return this.productsRepository.find({});
   }
+
+  async findOneProduct(id: number) {
+    return this.productsRepository.findOne({ id });
+  }
 }
