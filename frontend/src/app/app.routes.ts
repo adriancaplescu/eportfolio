@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { ProductFormComponent } from './components/product-form/product-form.component';
+import ProductFormComponent from './components/product-form/product-form.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ImagePreviewComponent } from './components/image-preview/image-preview.component';
 
