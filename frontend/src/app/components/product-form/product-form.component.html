@@ -9,24 +9,24 @@
       <form (submit)="uploadImage(title, description, link, selectedValue ?? false)">
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Title</mat-label>
-          <input matInput #title required type="text" placeholder="Title">
+          <input matInput #title required type="text">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Description</mat-label>
-          <textarea matInput #description required rows="2" placeholder="Description"></textarea>
+          <textarea matInput #description required rows="2"></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Client link</mat-label>
-          <input matInput #link required type="text" placeholder="Client link">
+          <mat-label required>Client link</mat-label>
+          <input matInput #link  required type="text">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Select an option</mat-label>
+          <mat-label required>Display product</mat-label>
           <mat-select [(ngModel)]="selectedValue" name="selectedValue">
-            <mat-option [value]="true">True</mat-option>
-            <mat-option [value]="false">False</mat-option>
+            <mat-option [value]="true">Yes</mat-option>
+            <mat-option [value]="false">No</mat-option>
           </mat-select>
         </mat-form-field>
 
