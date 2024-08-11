@@ -17,23 +17,25 @@ export class ProductService {
     file: File
   ) {
     const formData = new FormData();
-    console.log(title);
-    console.log(description);
-    console.log(file);
+
     formData.append('title', title);
     formData.append('description', description);
     formData.append('link', link);
     formData.append('displayStatus', displayStatus.toString());
     formData.append('image', file);
 
-    formData.forEach((value, key) => {
-      console.log(`Key: ${key}, Value: ${value}`);
-    });
-
     return this.http.post(this.apiUrl, formData);
   }
 
   getProducts() {
     return this.http.get<any[]>(`${this.apiUrl}/find-all`);
+  }
+
+  getOneProduct(id: number) {
+    return this.http.get<any>(`${this.apiUrl}/find-one/${id}`);
+  }
+
+  updateProduct(id: number, product: any) {
+    return this.http.patch<any>(`${this.apiUrl}/${id}`, product);
   }
 }

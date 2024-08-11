@@ -1,1 +1,30 @@
-<p>image-preview works!</p>
+<div class="row" *ngIf="!product else main_content">
+    <h1>Loading...</h1>
+</div>
+
+<ng-template #main_content>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <img [src]="product.image" alt="{{ product.title }}" class="img-fluid">
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card mb-4">
+                <form class="card-body" (submit)="updateProduct()">
+                    <div class="form-group">
+                        <input [(ngModel)]="product.title" name="title" type="text" class="form-control" placeholder="Title">
+                        <textarea [(ngModel)]="product.description" name="description" rows="2" class="form-control" placeholder="Description"></textarea>
+                    </div>
+                    <button class="btn btn-primary btn-block">
+                        Update 
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- <button class="mt-4 btn btn-danger" (click)="deleteProduct(product.id)"> -->
+    <button class="mt-4 btn btn-danger">
+        Delete
+    </button>
+</ng-template>
