@@ -32,4 +32,8 @@ export class ProductService {
 
     return this.http.post(this.apiUrl, formData);
   }
+
+  getProducts() {
+    return this.http.get<any[]>(`${this.apiUrl}/find-all`);
+  }
 }
