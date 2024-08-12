@@ -23,3 +23,4 @@
 21. run command npm install
 22. run command npm run start
 23. You now have first terminal who run backend, second who  is db interogation with  SELECT * FROM product; command and last termina who run frontend
+![Descrierea imaginii](https://github.com/adriancaplescu/eportfolio/blob/master/presentation.png)
