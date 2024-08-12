@@ -2,7 +2,9 @@
   <div class="col-sm-6 col-lg-4 p-4" *ngFor="let product of products">
     <div class="card card-photo">
       <div class="card-header">
-        {{ product.title }}
+        <a (click)="selectedProduct(product.id)" class="text-decoration-none">
+          {{ product.title }}
+        </a>
       </div>
       <img [src]="product.image" alt="" class="img-card-top w-100" (click)="selectedProduct(product.id)">
       <div class="card-body">

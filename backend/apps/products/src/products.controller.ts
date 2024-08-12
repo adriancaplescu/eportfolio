@@ -2,18 +2,16 @@ import { CreateProductDto, UpdateProductDto } from '@app/common';
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
   Post,
-  Delete,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
-import { ProductsService } from './products.service';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { ProductsService } from './products.service';
 
 @Controller('products')
 export class ProductsController {
