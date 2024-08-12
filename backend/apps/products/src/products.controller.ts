@@ -61,10 +61,22 @@ export class ProductsController {
   }
 
   @Patch(':id')
+  @UseInterceptors(FileInterceptor('image'))
   async updateProduct(
     @Param('id') id: string,
-    @Body() updateProductDto: UpdateProductDto,
+    @UploadedFile() file: Express.Multer.File,
+    @Body() body: any,
   ) {
+    const updateProductDto = new UpdateProductDto();
+    updateProductDto.title = body.title;
+    updateProductDto.description = body.description;
+    updateProductDto.link = body.link;
+    updateProductDto.displayStatus = body.displayStatus === 'true';
+
+    if (file) {
+      updateProductDto.image = `http://localhost:3000/uploads/${file.filename}`;
+    }
+
     return this.productsService.updateProduct(+id, updateProductDto);
   }
 
