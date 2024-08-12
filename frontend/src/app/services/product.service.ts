@@ -38,4 +38,8 @@ export class ProductService {
   updateProduct(id: number, product: any) {
     return this.http.patch<any>(`${this.apiUrl}/${id}`, product);
   }
+
+  deleteProduct(id: number) {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
 }

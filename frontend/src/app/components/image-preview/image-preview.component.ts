@@ -30,24 +30,29 @@ export class ImagePreviewComponent implements OnInit {
 
   updateProduct(): boolean {
     if (this.id !== undefined) {
-      this.productService.updateProduct(this.id, this.product).subscribe(
-        (res) => {
-          console.log(res);
+      this.productService.updateProduct(this.id, this.product).subscribe({
+        next: (res) => {
           this.router.navigate(['/products']);
         },
-        (err) => console.log(err)
-      );
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    }
+    return false;
+  }
+
+  deleteProduct() {
+    if (this.id !== undefined) {
+      this.productService.deleteProduct(this.id).subscribe({
+        next: (res) => {
+          this.router.navigate(['/products']);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
     }
     return false;
   }
 }
-
-// deleteProduct(id: number) {
-//   this.productService.deleteProduct(id).subscribe(
-//     res => {
-//       console.log(res);
-//       this.router.navigate(['/products']);
-//     },
-//     err => console.log(err)
-//   );
-// }

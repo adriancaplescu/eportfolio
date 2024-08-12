@@ -1,0 +1,23 @@
+.card-img {
+    height: 100%;
+    object-fit: cover; /* Imaginea va umple spațiul și își va păstra proporțiile */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Asigură că detaliile sunt centrate pe verticală */
+}
+
+.p-2 {
+    padding: 10px; /* Spațiu interior adăugat în jurul imaginii */
+}
+
+.btn {
+    width: 100px; /* Poți ajusta dimensiunea butoanelor după cum dorești */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Adaugă spațiu de 20px între fiecare form-group */
+}
+
