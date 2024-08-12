@@ -6,7 +6,7 @@
 6. Open another terminal
 7. Run next commands if you use  windows. On mac commands will be different. Will create a local mysql-server to keep data here :
    
-7.1 sudo apt install mysql-server
+8. sudo apt install mysql-server
 7.2 sudo service mysql start
 7.3 sudo mysql -u root
 7.4 CREATE DATABASE eportfolio;
