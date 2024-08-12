@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
-  styleUrl: './product-form.component.scss',
+  styleUrls: ['./product-form.component.scss'],
 })
 export default class ProductFormComponent implements OnInit {
   file?: File;
   imageSelected?: string | ArrayBuffer | null = null;
   selectedValue?: boolean;
+  imageError: boolean = false;
 
-  constructor(private productService: ProductService, private router: Router) {
-    this.selectedValue = false;
-  }
+  product = {
+    title: '',
+    description: '',
+    link: '',
+    displayStatus: false,
+  };
+
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -22,38 +29,43 @@ export default class ProductFormComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     if (input && input.files && input.files[0]) {
       this.file = input.files[0];
+      this.imageError = false;
 
-      // image preview
       const reader = new FileReader();
       reader.onload = () => (this.imageSelected = reader.result);
       reader.readAsDataURL(this.file);
     }
   }
 
-  uploadImage(
-    title: HTMLInputElement,
-    description: HTMLTextAreaElement,
-    link: HTMLInputElement,
-    displayStatus: boolean
-  ): boolean {
-    if (this.file) {
-      this.productService
-        .createProduct(
-          title.value,
-          description.value,
-          link.value,
-          displayStatus,
-          this.file
-        )
-        .subscribe(
-          (res) => {
-            this.router.navigate(['/products']);
-          },
-          (err) => console.log(err)
-        );
-    } else {
-      console.log('No file selected');
+  uploadImage(form: NgForm): boolean {
+    if (form.invalid || !this.file) {
+      this.markAllAsTouched(form);
+      this.imageError = !this.file;
+      return false;
     }
+
+    this.productService
+      .createProduct(
+        this.product.title,
+        this.product.description,
+        this.product.link,
+        this.product.displayStatus,
+        this.file
+      )
+      .subscribe({
+        next: (res) => {
+          this.router.navigate(['/products']);
+        },
+        error: (err) => console.log(err),
+        complete: () => console.log('Product creation completed'),
+      });
+
     return false;
+  }
+
+  private markAllAsTouched(form: NgForm): void {
+    Object.values(form.controls).forEach((control) => {
+      control.markAsTouched();
+    });
   }
 }

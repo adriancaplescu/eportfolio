@@ -1,7 +1,6 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <!-- Verifică dacă `product` este definit -->
             <div *ngIf="product; else loading">
                 <div class="card mb-5">
                     <div class="row no-gutters">
@@ -38,7 +37,6 @@
                 </div>
                 <button class="btn btn-danger custom-btn" (click)="deleteProduct()">Delete</button>
             </div>
-            <!-- Template pentru starea de încărcare -->
             <ng-template #loading>
                 <h1>Loading...</h1>
             </ng-template>

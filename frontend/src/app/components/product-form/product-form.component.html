@@ -6,37 +6,45 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form (submit)="uploadImage(title, description, link, selectedValue ?? false)">
+      <form #myForm="ngForm" (ngSubmit)="uploadImage(myForm)">
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Title</mat-label>
-          <input matInput #title required type="text">
+          <input matInput [(ngModel)]="product.title" #title="ngModel" name="title" required type="text">
+          <mat-error *ngIf="title.invalid && title.touched">Title is required</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Description</mat-label>
-          <textarea matInput #description required rows="2"></textarea>
+          <textarea matInput [(ngModel)]="product.description" #description="ngModel" name="description" required rows="2"></textarea>
+          <mat-error *ngIf="description.invalid && description.touched">Description is required</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label required>Client link</mat-label>
-          <input matInput #link  required type="text">
+          <mat-label>Client link</mat-label>
+          <input matInput [(ngModel)]="product.link" #link="ngModel" name="link" required type="text">
+          <mat-error *ngIf="link.invalid && link.touched">Client link is required</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label required>Display product</mat-label>
-          <mat-select [(ngModel)]="selectedValue" name="selectedValue">
+          <mat-label>Display product</mat-label>
+          <mat-select [(ngModel)]="product.displayStatus" #displayStatus="ngModel" name="displayStatus" required>
             <mat-option [value]="true">Yes</mat-option>
             <mat-option [value]="false">No</mat-option>
           </mat-select>
+          <mat-error *ngIf="displayStatus.invalid && displayStatus.touched">Please select display status</mat-error>
         </mat-form-field>
 
         <input type="file" class="d-none" (change)="onProductSelected($event)" #photoInput>
         <img [src]="imageSelected || 'assets/no-image.jpg'" class="img-fluid image-preview" alt="Preview" (click)="photoInput.click()">
-
-        <div class="form-group">
-          <button mat-raised-button color="primary" class="btn-block">Upload</button>
-        </div>
+        <mat-error *ngIf="imageError">Image is required</mat-error>
       </form>
     </mat-card-content>
   </mat-card>
+
+  <button 
+    class="btn btn-primary btn-block mx-auto d-flex justify-content-center" 
+    style="width: 150px; margin-top: 20px;" 
+    (click)="uploadImage(myForm)">
+    Create
+  </button>
 </div>
