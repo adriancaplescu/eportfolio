@@ -25,17 +25,7 @@ export class ProductsController {
   }
 
   @Post()
-  @UseInterceptors(
-    FileInterceptor('image', {
-      storage: diskStorage({
-        destination: './uploads',
-        filename: (req, file, cb) => {
-          const filename = `${Date.now()}${extname(file.originalname)}`;
-          cb(null, filename);
-        },
-      }),
-    }),
-  )
+  @UseInterceptors(FileInterceptor('image'))
   async createProduct(
     @UploadedFile() file: Express.Multer.File,
     @Body() body: any,
