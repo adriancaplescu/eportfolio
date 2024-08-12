@@ -25,7 +25,7 @@ export default class ProductFormComponent implements OnInit {
 
   ngOnInit() {}
 
-  onProductSelected(event: Event): void {
+  onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input && input.files && input.files[0]) {
       this.file = input.files[0];
@@ -37,7 +37,7 @@ export default class ProductFormComponent implements OnInit {
     }
   }
 
-  uploadImage(form: NgForm): boolean {
+  createProduct(form: NgForm): boolean {
     if (form.invalid || !this.file) {
       this.markAllAsTouched(form);
       this.imageError = !this.file;
