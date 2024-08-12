@@ -19,7 +19,7 @@
 18. SHOW TABLES;
 19. SELECT * FROM product;
 
-8. Open another terminal  and go to frontend dir.
-9. run command npm install
-10. run command npm run start
-1. You now have first terminal who run backend, second who  is db interogation with  SELECT * FROM product; command and last termina who run frontend
+20. Open another terminal  and go to frontend dir.
+21. run command npm install
+22. run command npm run start
+23. You now have first terminal who run backend, second who  is db interogation with  SELECT * FROM product; command and last termina who run frontend
