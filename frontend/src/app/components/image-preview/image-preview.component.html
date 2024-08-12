@@ -5,7 +5,17 @@
                 <div class="card mb-5">
                     <div class="row no-gutters">
                         <div class="col-md-5">
-                            <img [src]="product.image" class="card-img p-2" alt="{{ product.title }}">
+                            <img 
+                                [src]="product.image" 
+                                class="card-img p-2" 
+                                alt="{{ product.title }}" 
+                                style="cursor: pointer;" 
+                                (click)="photoInput.click()">
+                            <input 
+                                type="file" 
+                                class="d-none" 
+                                (change)="onImageSelected($event)" 
+                                #photoInput>
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">

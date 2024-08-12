@@ -10,6 +10,7 @@ import { ProductService } from '../../services/product.service';
 export class ImagePreviewComponent implements OnInit {
   product: any;
   id?: number;
+  file?: File;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -28,9 +29,32 @@ export class ImagePreviewComponent implements OnInit {
     });
   }
 
+  onImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input && input.files && input.files[0]) {
+      this.file = input.files[0];
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.product.image = reader.result; // Afișează imaginea selectată în preview
+      };
+      reader.readAsDataURL(this.file);
+    }
+  }
+
   updateProduct(): boolean {
     if (this.id !== undefined) {
-      this.productService.updateProduct(this.id, this.product).subscribe({
+      const formData = new FormData();
+      formData.append('title', this.product.title);
+      formData.append('description', this.product.description);
+      formData.append('link', this.product.link);
+      formData.append('displayStatus', this.product.displayStatus.toString());
+
+      if (this.file) {
+        formData.append('image', this.file);
+      }
+
+      this.productService.updateProduct(this.id, formData).subscribe({
         next: (res) => {
           this.router.navigate(['/products']);
         },
