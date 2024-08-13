@@ -15,6 +15,7 @@ Frontend tests:
 	-update/delete for iPhone too
 	- arrow back to previous page work
 	-TODO: arrow back not very visible in iPhone mode
+	-TODO: updated images or deleted are not physical deleted from uploads dir
 
 
 	
