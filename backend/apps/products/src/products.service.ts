@@ -15,8 +15,17 @@ export class ProductsService {
     return 'Hello World!!';
   }
 
-  async createProduct(createProductDto: CreateProductDto) {
-    const product = new Product({ ...createProductDto });
+  async createProduct(
+    file: Express.Multer.File,
+    createProductDto: CreateProductDto,
+  ) {
+    const plainInstanceOfProduct = plainToInstance(
+      CreateProductDto,
+      createProductDto,
+    );
+    const product = new Product({ ...plainInstanceOfProduct });
+
+    product.image = `http://localhost:3000/uploads/${file.filename}`;
 
     return this.productsRepository.create(product);
   }
@@ -34,16 +43,11 @@ export class ProductsService {
     file: Express.Multer.File,
     updateProductDto: any,
   ) {
-    console.log('In service value is ', updateProductDto);
     const updateProduct = plainToInstance(UpdateProductDto, updateProductDto);
-    console.log('In service value is ', updateProductDto);
 
     if (file) {
       updateProduct.image = `http://localhost:3000/uploads/${file.filename}`;
     }
-    console.log('id  is ', id);
-    console.log('Prepared update object for DB:', updateProduct);
-
     return this.productsRepository.findOneAndUpdate({ id }, updateProduct);
   }
 

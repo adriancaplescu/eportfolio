@@ -12,7 +12,6 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ProductsService } from './products.service';
-import { plainToInstance } from 'class-transformer';
 
 @Controller('products')
 export class ProductsController {
@@ -27,12 +26,9 @@ export class ProductsController {
   @UseInterceptors(FileInterceptor('image'))
   async createProduct(
     @UploadedFile() file: Express.Multer.File,
-    @Body() body: CreateProductDto,
+    @Body() createProductDto: CreateProductDto,
   ) {
-    const createProductDto = plainToInstance(CreateProductDto, body);
-    createProductDto.image = `http://localhost:3000/uploads/${file.filename}`;
-
-    return this.productsService.createProduct(createProductDto);
+    return this.productsService.createProduct(file, createProductDto);
   }
 
   @Get('find-all')
@@ -52,16 +48,8 @@ export class ProductsController {
     @UploadedFile() file: Express.Multer.File,
     @Body() body: UpdateProductDto,
   ) {
-    console.log('value in controller is :', body.displayStatus);
     return this.productsService.updateProduct(+id, file, body);
   }
-
-  // @Patch('update-display/:id')
-  // async updateDisplay(
-  //   @Param('id') id: string,
-  //   @Body () body: any,
-  //   return this.prod
-  // )
 
   @Delete(':id')
   async deleteProduct(@Param('id') id: string) {
