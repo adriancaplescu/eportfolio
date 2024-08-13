@@ -36,7 +36,7 @@ export class ImagePreviewComponent implements OnInit {
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.product.image = reader.result; // Afișează imaginea selectată în preview
+        this.product.image = reader.result;
       };
       reader.readAsDataURL(this.file);
     }
@@ -48,7 +48,7 @@ export class ImagePreviewComponent implements OnInit {
       formData.append('title', this.product.title);
       formData.append('description', this.product.description);
       formData.append('link', this.product.link);
-      formData.append('displayStatus', this.product.displayStatus.toString());
+      formData.append('displayStatus', this.product.displayStatus);
 
       if (this.file) {
         formData.append('image', this.file);

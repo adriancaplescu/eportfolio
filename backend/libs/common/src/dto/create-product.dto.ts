@@ -18,7 +18,9 @@ export class CreateProductDto {
   @IsNotEmpty()
   link: string;
 
-  @Transform(({ value }) => value === 'true')
+  @Transform(({ value }) =>
+    typeof value === 'string' ? value === 'true' : value,
+  )
   @IsBoolean()
   @IsNotEmpty()
   displayStatus: boolean;

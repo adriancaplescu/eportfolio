@@ -50,21 +50,18 @@ export class ProductsController {
   async updateProduct(
     @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File,
-    @Body() body: any,
+    @Body() body: UpdateProductDto,
   ) {
-    const updateProductDto = new UpdateProductDto();
-    updateProductDto.title = body.title;
-    updateProductDto.description = body.description;
-    updateProductDto.link = body.link;
-    updateProductDto.displayStatus = body.displayStatus === 'true';
-    console.log('body in update in controller is :', body);
-
-    if (file) {
-      updateProductDto.image = `http://localhost:3000/uploads/${file.filename}`;
-    }
-
-    return this.productsService.updateProduct(+id, updateProductDto);
+    console.log('value in controller is :', body.displayStatus);
+    return this.productsService.updateProduct(+id, file, body);
   }
+
+  // @Patch('update-display/:id')
+  // async updateDisplay(
+  //   @Param('id') id: string,
+  //   @Body () body: any,
+  //   return this.prod
+  // )
 
   @Delete(':id')
   async deleteProduct(@Param('id') id: string) {

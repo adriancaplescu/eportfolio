@@ -28,7 +28,6 @@ export class ProductListComponent implements OnInit {
   }
 
   updateDisplayStatus(product: Product) {
-    console.log('in updateDisplayInterfaces');
     this.productService
       .updateProduct(product.id, { displayStatus: product.displayStatus })
       .subscribe({
