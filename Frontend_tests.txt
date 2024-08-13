@@ -1,0 +1,22 @@
+Frontend tests:
+-route : /products:
+	-images responsive
+	-nav collapse bar work
+	-work on Ipad, Iphone Se and Galaxy Z Fold D
+-route : /products/new
+	- imagine responsive
+	-work with iPhone, galaxy
+	-Create user with user and desktop view
+	- arrow back to previous page work
+	-TODO: arrow back not very visible in iPhone mode
+-route:	/products/:id (update/delete)
+	-update: - title, description, client link, display product(true/false), image(click on image)
+	-delete -work
+	-update/delete for iPhone too
+	- arrow back to previous page work
+	-TODO: arrow back not very visible in iPhone mode
+
+
+	
+	
+	
