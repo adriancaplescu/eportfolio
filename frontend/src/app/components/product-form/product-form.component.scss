@@ -14,13 +14,21 @@
   mat-card-title h1 {
     color: white !important; 
   }
- 
-
   
   .image-preview {
     display: block;
     margin: 10px auto;
     max-width: 100%;
     cursor: pointer;
+  }
+
+  
+  .go-back mat-icon {
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    position: absolute;
+    top: 16px;
+    left: 16px;
   }
   

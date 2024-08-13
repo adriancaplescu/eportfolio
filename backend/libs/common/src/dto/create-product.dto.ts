@@ -1,4 +1,5 @@
-import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 export class CreateProductDto {
   @IsString()
@@ -10,13 +11,14 @@ export class CreateProductDto {
   description: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   image: string;
 
   @IsString()
   @IsNotEmpty()
   link: string;
 
+  @Transform(({ value }) => value === 'true')
   @IsBoolean()
   @IsNotEmpty()
   displayStatus: boolean;

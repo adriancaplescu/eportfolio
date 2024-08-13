@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
-import { MulterModule } from '@nestjs/platform-express';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import { MulterModule } from '@nestjs/platform-express';
     MatOptionModule,
     MatCardModule,
     BrowserAnimationsModule,
+    MatIconModule,
   ],
   bootstrap: [AppComponent],
 })

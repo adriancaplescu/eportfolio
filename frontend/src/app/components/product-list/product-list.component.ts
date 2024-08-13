@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
+import { Product } from '../../interfaces';
 
 @Component({
   selector: 'app-product-list',
@@ -26,7 +27,8 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/products', productId]);
   }
 
-  updateDisplayStatus(product: any) {
+  updateDisplayStatus(product: Product) {
+    console.log('in updateDisplayInterfaces');
     this.productService
       .updateProduct(product.id, { displayStatus: product.displayStatus })
       .subscribe({
